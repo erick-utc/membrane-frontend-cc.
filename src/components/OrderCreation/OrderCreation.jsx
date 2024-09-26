@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { ToggleButton, ToggleButtonGroup, Typography, InputLabel, MenuItem, FormLabel, Select, TextField, Box, Button } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { v4 as uuidv4 } from 'uuid';
 import useOrdersStore from "../../store/useOrderStore";
 
 const OrderCreation = () => {
-    
-    const [currencyList, setCurrencyList] = useState([]);
     const addOrder = useOrdersStore((state) => state.addOrder);
     const updateOrder = useOrdersStore((state) => state.updateOrder);
     const selectedOrder = useOrdersStore((state) => state.selectedOrder);
+    const currencyList = useOrdersStore((state) => state.currencyList);
+    const setCurrencyList = useOrdersStore((state) => state.setCurrencyList);
 
     const defaultValues = {
         operation: 'buy',
@@ -78,7 +78,8 @@ const OrderCreation = () => {
             data.value = getValueToTransfer(data.amount).value;
             console.log(data);
             addOrder(data);
-        }   
+        }  
+        console.log(data); 
         reset();
     }
 
@@ -110,8 +111,10 @@ const OrderCreation = () => {
             }
                 
         }
-
-        fetchData();
+        if(!currencyList || currencyList.length === 0) {
+            fetchData();
+        }
+        
     }, []);
 
     useEffect(() => {

@@ -3,6 +3,7 @@ import { create } from 'zustand'
 const useOrdersStore = create((set, get) => ({
     orders: JSON.parse(localStorage.getItem('orders')) || [],
     selectedOrder: null,
+    currencyList: JSON.parse(localStorage.getItem('currencies')) || [],
     addOrder: (order) => {
         const { orders } = get();
         const newOrders = structuredClone(orders);
@@ -31,6 +32,10 @@ const useOrdersStore = create((set, get) => ({
     setSelectedOrder: (order) => {
         set({ selectedOrder: order });
     },
+    setCurrencyList: (currencies) => {
+        localStorage.setItem('currencies', JSON.stringify(currencies));
+        set({ currencies });
+    }
   }));
 
 

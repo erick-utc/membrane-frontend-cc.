@@ -7,6 +7,29 @@ const OrderItem = () => {
     const removeOrder = useOrdersStore((state) => state.removeOrder);
     const orders = useOrdersStore((state) => state.orders);
     const setSelectedOrder = useOrdersStore((state) => state.setSelectedOrder);
+    const currencyList = useOrdersStore((state) => state.currencyList);
+
+    const getCurrencySymbol = (order) => {
+        const operation = order.operation;
+        if(operation === 'sell') {
+            return '$';
+        }else {
+            const currency = currencyList.find(currency => currency.code === order.currency);
+            return currency ? currency.symbol : ''
+        }
+        
+    }
+
+    const getAmountSymbol = (order) => {
+        const operation = order.operation;
+        if(operation === 'buy') {
+            return '$';
+        }else {
+            const currency = currencyList.find(currency => currency.code === order.currency);
+            return currency ? currency.symbol : ''
+        }
+        
+    }
 
     return (
         <>
@@ -14,8 +37,8 @@ const OrderItem = () => {
             <TableRow key={`order_${i}`}>
                 <TableCell>{order.operation}</TableCell>
                 <TableCell>{order.currency}</TableCell>
-                <TableCell>{order.amount}</TableCell>
-                <TableCell>{order.value}</TableCell>
+                <TableCell>{getAmountSymbol(order)}{order.amount}</TableCell>
+                <TableCell>{getCurrencySymbol(order)}{order.value}</TableCell>
                 <TableCell>
                     <Button
                         variant="contained"
