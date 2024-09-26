@@ -1,8 +1,22 @@
-# React + Vite
+# Custom Crytp Cart Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a custom cart application that selects some Crypto coins, that you can buy or sell
 
-Currently, two official plugins are available:
+Displays the transanctions that you're making and making the transformation for the amounts that you required to pay based if you're selling or buying
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+In order to run this application you have
+
+- clone this repo
+- enter the folder that you added this repo
+-  `npm install`
+-  `npm run dev`
+
+This application use:
+- Vite
+- Zustand
+- Mui 
+- ReactHookForms
+
+Also here is a test page in vercel https://membrane-frontend-cc-ten.vercel.app/ with the app deployed.
+
+
